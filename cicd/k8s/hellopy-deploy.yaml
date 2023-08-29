@@ -1,0 +1,34 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hellopy-deploy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hellopy
+  template:
+    metadata:
+      labels:
+        app: hellopy
+    spec:
+      containers:
+        - name: hellopy
+          image: symplesims/hello-python:latest
+          ports:
+            - containerPort: 8050
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hellopy-svc
+spec:
+  selector:
+    app: hellopy
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8050
+  type: LoadBalancer
