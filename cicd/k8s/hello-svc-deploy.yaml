@@ -2,20 +2,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hellopy-deploy
+  name: helloflask-deploy
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: hellopy
+      app: helloflask
   template:
     metadata:
       labels:
-        app: hellopy
+        app: helloflask
     spec:
       containers:
-        - name: hellopy
-          image: symplesims/hello-python:latest
+        - name: helloflask
+          image: symplesims/helloflask:latest
           ports:
             - containerPort: 8050
 
@@ -23,10 +23,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: hellopy-svc
+  name: helloflask-svc
 spec:
   selector:
-    app: hellopy
+    app: helloflask
   ports:
     - protocol: TCP
       port: 8000
