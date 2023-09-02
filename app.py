@@ -31,6 +31,11 @@ def hello_world():  # put application's code here
     return render_template('index.html', name=name)
 
 
+@app.route("/health")
+def health():
+    return "OK"
+
+
 @app.route("/echo", methods=["GET"])
 def echo():
     url = request.url
